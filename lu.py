@@ -1,4 +1,4 @@
-from aux import np, isSquare
+from aux import np, isSquare, solveLinear
 
 
 def lu(matrixA):
@@ -26,9 +26,19 @@ def lu(matrixA):
 # ------------------------------------- main ------------------------------------- #
 
 
+
 # inputs
-a = np.array([[1, 2, 2], [4, 4, 2], [4, 6, 4]])
-print("\n matriz de input:\n" + str(a) + "\n")
+a = np.array([[4.5, 2.5, 1.5, 0.5, 1.0, 0.5], [2.5, 5.0, 2.5,
+                                               1.5, 0.5, 1.0], [1.5, 2.5, 4.5, 2.5, 0.5, 1.0], [0.5, 1.5, 2.5, 3.0, 0.5, 1.0], [1.0, 0.5, 0.5, 0.5, 2.5, 1.5], [0.5, 1.0, 1.0, 1.0, 1.5, 2.0]])
+print("\nmatriz de input A:\n" + str(a) + "\n")
+b = np.array([10.0, 20.0, 30.0, 40.0, 30.0, 10.0])
+print("\nmatriz de input b:\n" + str(b) + "\n")
 
 # decomposicao lu
-print("\n resultado da decomposicao LU:\n" + str(lu(a)) + "\n\n")
+LU = lu(a)
+print("\nresultado da decomposicao LU:\n" + str(LU) + "\n")
+
+# Resultado de Ax = b
+x = solveLinear(LU, b)
+print("\nvetor resultado x:\n" + str(x) + "\n")
+print("\nmultiplicacao Ax (tem que ser igual a b):\n" + str(np.dot(a, x)) + "\n")
