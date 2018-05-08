@@ -38,13 +38,16 @@ def solveLinear(matrixLU, vectorb):
         for j in range(i):
             firstSum += matrixL[i, j] * vectorY[j]
         vectorY[i] = (vectorb[i] - firstSum) / matrixL[i, i]
+    print("\nVector Y:\n" + str(vectorY) + "\n")
 
     # Substituicao para tras
     vectorx[len(vectorx)-1] = vectorY[len(vectorx)-1] / matrixU[len(vectorx)-1, len(vectorx)-1]
     for i in range(len(vectorx)-2, -1, -1):
         secondSum = 0.0
         for j in range(i+1, len(vectorx)):
-            secondSum += matrixU[i, j] * vectorY[j]
+            secondSum += matrixU[i, j] * vectorx[j]
         vectorx[i] = (vectorY[i] - secondSum) / matrixU[i, i]
+    print("\nVector x:\n" + str(vectorx) +"\n")
+    print("\nMultiplicacao Ux (tem que ser igual a Y):\n" + str(np.dot(matrixU,vectorx)) + "\n")
 
     return vectorx

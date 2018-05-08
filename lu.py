@@ -40,5 +40,5 @@ print("\nresultado da decomposicao LU:\n" + str(LU) + "\n")
 
 # Resultado de Ax = b
 x = solveLinear(LU, b)
-print("\nvetor resultado x:\n" + str(x) + "\n")
-print("\nmultiplicacao Ax (tem que ser igual a b):\n" + str(np.dot(a, x)) + "\n")
+# print("\nvetor resultado x:\n" + str(x) + "\n")
+# print("\nmultiplicacao Ax (tem que ser igual a b):\n" + str(np.dot(a, x)) + "\n")
