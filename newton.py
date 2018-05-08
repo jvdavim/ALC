@@ -1,7 +1,7 @@
 from aux import np
 
 
-def newton(x0=0, tol=10e-4):
+def newtonOrig(x0=0, tol=10e-4):
     tolk = 1
     px = x0
     while (tolk > tol):
@@ -9,6 +9,10 @@ def newton(x0=0, tol=10e-4):
         tolk = abs(x - px)
         px = x
     return x
+
+
+def newtonSec(x0=0, tol=10e-4):
+    return
 
 
 # ------------------------------------- main ------------------------------------- #
@@ -22,5 +26,5 @@ x0 = 10
 tol = 5*10e-4
 
 # newton
-x = newton(x0, tol)
-print ("\nRaiz da funcao f(x):\n" + str(x) + "\n")
+x = newtonOrig(x0, tol)
+print ("\nRaiz da funcao f(x) por Newton Original:\n" + str(x) + "\n")
