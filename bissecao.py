@@ -1,4 +1,3 @@
-import lu
 from aux  import np
 
 
