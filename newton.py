@@ -1,13 +1,29 @@
 from aux import np
 
 
-def newton(x0=0, tol=10e-4):
+def newtonOrig(x0=0, tol=10e-4):
     tolk = 1
     px = x0
     while (tolk > tol):
         x = px - f(px) / fl(px)
         tolk = abs(x - px)
         px = x
+    return x
+
+
+def newtonSec(x0=0, tol=10e-4):
+    tolk = 1
+    Dx = 0.001
+    px = x0
+    x = x0 + Dx
+    fa = f(x0)
+    while tolk > tol:
+        fi = f(x)
+        nx = x - fi*(x - px) / (fi - fa)
+        tolk = abs(nx - x)
+        px = x
+        x = nx
+        fa = fi
     return x
 
 
@@ -21,6 +37,10 @@ def fl(x):
 x0 = 10
 tol = 5*10e-4
 
-# newton
-x = newton(x0, tol)
-print ("\nRaiz da funcao f(x):\n" + str(x) + "\n")
+# newton original
+x = newtonOrig(x0, tol)
+print ("\nRaiz da funcao f(x) por Newton Original:\n" + str(x) + "\n")
+
+# newton secante
+x = newtonSec(x0, tol)
+print ("\nRaiz da funcao f(x) por Newton Secante:\n" + str(x) + "\n")
