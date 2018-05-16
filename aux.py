@@ -51,3 +51,9 @@ def solveLinear(matrixLU, vectorb):
     print("\nMultiplicacao Ux (tem que ser igual a Y):\n" + str(np.dot(matrixU,vectorx)) + "\n")
 
     return vectorx
+
+
+def biggerElementIndex(array):
+    orderedArray = np.copy(array)
+    orderedArray.sort()
+    return array.index(orderedArray[-1])
