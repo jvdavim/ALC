@@ -7,7 +7,6 @@ def newtonmethod(x0, tol=10e-7):
     vectorpx = x0
 
     while tolk>tol:
-        print(vectorpx)
         matrixJ = Jacob(vectorpx)
         vectorF = np.array([[f1(vectorpx)], [f2(vectorpx)]])
         vectorDx = solveLinear(lu(matrixJ), np.dot(-1, vectorF))
@@ -21,14 +20,13 @@ def newtonmethod(x0, tol=10e-7):
 # ------------------------------------- main ------------------------------------- #
 
 # inputs
-x0 = np.array([[2], [3]])
+x0 = [[2], [3]]
 def f1(x):
     return x[0, 0] + 2*x[1, 0] - 2
 def f2(x):
     return (x[0, 0])**2 + 4*(x[1, 0])**2 - 4
 
 def Jacob(x):
-    print(x[0])
     return np.array([[1, 2], [2*x[0, 0], 8*x[1, 0]]])
 
 # metodo de newton
