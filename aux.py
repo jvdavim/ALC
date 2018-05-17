@@ -26,26 +26,26 @@ def isSquare(matrixA):
 def solveLinear(matrixLU, vectorb):
     matrixU = np.triu(matrixLU)
     matrixL = np.tril(matrixLU)
-    vectorY = np.zeros(len(matrixU))
-    vectorx = np.zeros(len(matrixU))
+    vectorY = np.zeros((len(matrixU), 1))
+    vectorx = np.zeros((len(matrixU), 1))
     for i in range(len(matrixL)):
         matrixL[i, i] = 1.0
 
     # Substituicao para frente
-    vectorY[0] = vectorb[0] / matrixL[0, 0]
+    vectorY[0, 0] = vectorb[0, 0] / matrixL[0, 0]
     for i in range(1, len(vectorY)):
         firstSum = 0.0
         for j in range(i):
             firstSum += matrixL[i, j] * vectorY[j]
-        vectorY[i] = (vectorb[i] - firstSum) / matrixL[i, i]
+        vectorY[i, 0] = (vectorb[i, 0] - firstSum) / matrixL[i, i]
 
     # Substituicao para tras
-    vectorx[len(vectorx)-1] = vectorY[len(vectorx)-1] / matrixU[len(vectorx)-1, len(vectorx)-1]
+    vectorx[len(vectorx)-1, 0] = vectorY[len(vectorx)-1, 0] / matrixU[len(vectorx)-1, len(vectorx)-1]
     for i in range(len(vectorx)-2, -1, -1):
         secondSum = 0.0
         for j in range(i+1, len(vectorx)):
-            secondSum += matrixU[i, j] * vectorx[j]
-        vectorx[i] = (vectorY[i] - secondSum) / matrixU[i, i]
+            secondSum += matrixU[i, j] * vectorx[j, 0]
+        vectorx[i, 0] = (vectorY[i, 0] - secondSum) / matrixU[i, i]
 
     return vectorx
 
