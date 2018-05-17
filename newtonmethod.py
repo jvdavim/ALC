@@ -13,21 +13,21 @@ def newtonmethod(x0, tol=10e-7):
         vectorx = vectorpx + vectorDx
         tolk = np.linalg.norm(vectorDx) / np.linalg.norm(vectorx)
         vectorpx = vectorx
-        
+
     return vectorx
 
 
 # ------------------------------------- main ------------------------------------- #
 
 # inputs
-x0 = [2, 3]
+x0 = [[2], [3]]
 def f1(x):
-    return x[0] + 2*x[1] - 2
+    return x[0, 0] + 2*x[1, 0] - 2
 def f2(x):
-    return (x[0])**2 + 4*(x[1])**2 - 4
+    return (x[0, 0])**2 + 4*(x[1, 0])**2 - 4
 
 def Jacob(x):
-    return np.array([[1, 2], [2*x[0], 8*x[1]]])
+    return np.array([[1, 2], [2*x[0, 0], 8*x[1, 0]]])
 
 # metodo de newton
 x = newtonmethod(x0)
