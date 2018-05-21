@@ -24,6 +24,7 @@ def isSquare(matrixA):
 
 
 def solveLinear(matrixLU, vectorb):
+    '''Dada uma matriz LU e um vetor B, retorna o vetor solucao x do sistema de equacoes lineares correspondente'''
     matrixU = np.triu(matrixLU)
     matrixL = np.tril(matrixLU)
     vectorY = np.zeros((len(matrixU), 1))
@@ -40,7 +41,8 @@ def solveLinear(matrixLU, vectorb):
         vectorY[i, 0] = (vectorb[i, 0] - firstSum) / matrixL[i, i]
 
     # Substituicao para tras
-    vectorx[len(vectorx)-1, 0] = vectorY[len(vectorx)-1, 0] / matrixU[len(vectorx)-1, len(vectorx)-1]
+    vectorx[len(vectorx)-1, 0] = vectorY[len(vectorx)-1, 0] / \
+        matrixU[len(vectorx)-1, len(vectorx)-1]
     for i in range(len(vectorx)-2, -1, -1):
         secondSum = 0.0
         for j in range(i+1, len(vectorx)):
@@ -51,6 +53,7 @@ def solveLinear(matrixLU, vectorb):
 
 
 def biggerElementIndex(array):
+    '''Retorna o indice do maior elemento do array'''
     orderedArray = np.copy(array)
     orderedArray.sort()
     return array.index(orderedArray[-1])

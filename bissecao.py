@@ -2,6 +2,7 @@ from aux  import np
 
 
 def bissecao(a, b, tol=10e-8):
+    '''Dado um intervalo [a,b] e uma tolerancia tol, retorna a raiz da funcao f(x)'''
     while (abs(b - a) > tol):
         xi = (a + b) / 2.0
         fi = f(xi)

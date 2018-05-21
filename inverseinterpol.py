@@ -2,6 +2,7 @@ from aux import np, biggerElementIndex
 
 
 def inverseInterpolate(x=[0,1,2], tol=10e-4, NITER=10):
+    '''Dado um vetor inicial x0 e uma tolerancia tol, retorna o vetor solucao do sistema de equacoes nao lineares'''
     tolk = 1
     px = 10e+36
     count = 0

@@ -3,6 +3,7 @@ from lu import lu
 
 
 def broydenmethod(x0, B0, tol=10e-10, NITER=10):
+    '''Dado um vetor inicial x0 e uma tolerancia tol, retorna o vetor solucao do sistema de equacoes nao lineares'''
     tolk = 1
     vectorpx = x0
     matrixB = B0

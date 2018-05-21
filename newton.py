@@ -2,6 +2,7 @@ from aux import np
 
 
 def newtonOrig(x0=0, tol=10e-4, NITER=10):
+    '''Dado um ponto inicial x0 e uma tolerancia tol, retorna a raiz da funcao f(x)'''
     tolk = 1
     px = x0
     count = 0
@@ -14,6 +15,7 @@ def newtonOrig(x0=0, tol=10e-4, NITER=10):
 
 
 def newtonSec(x0=0, tol=10e-4, NITER=10):
+    '''Dado um ponto inicial x0 e uma tolerancia tol, retorna a raiz da funcao f(x)'''    
     tolk = 1
     Dx = 0.001
     px = x0

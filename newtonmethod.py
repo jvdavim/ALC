@@ -3,6 +3,7 @@ from lu import lu
 
 
 def newtonmethod(x0, tol=10e-7, NITER=10):
+    '''Dado um vetor inicial x0 e uma tolerancia tol, retorna o vetor solucao do sistema de equacoes nao lineares'''
     tolk = 1
     vectorpx = x0
     count = 0
