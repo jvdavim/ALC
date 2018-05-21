@@ -1,11 +1,11 @@
 from aux import np, biggerElementIndex
 
 
-def inverseInterpolate(x=[0,1,2], tol=10e-4):
+def inverseInterpolate(x=[0,1,2], tol=10e-4, NITER=10):
     tolk = 1
     px = 10e+36
-
-    while tolk > tol:
+    count = 0
+    while (tolk > tol) and (count <= NITER):
         y = [f(x[0]), f(x[1]), f(x[2])]
         xk = (y[1]*y[2]*x[0]) / ((y[0]-y[1])*(y[0]-y[2])) + (y[0]*y[2]*x[1]) / \
             ((y[1]-y[0])*(y[1]-y[2])) + (y[0]*y[1]*x[2]) / ((y[2]-y[0])*(y[2]-y[1]))
@@ -16,7 +16,7 @@ def inverseInterpolate(x=[0,1,2], tol=10e-4):
         y[biggerIndexY] = f(xk)
         x.sort()
         y.sort()
-
+        count += 1
     return xk
 
 

@@ -2,12 +2,12 @@ from aux import np, solveLinear
 from lu import lu
 
 
-def broydenmethod(x0, B0, tol=10e-10):
+def broydenmethod(x0, B0, tol=10e-10, NITER=10):
     tolk = 1
     vectorpx = x0
     matrixB = B0
-
-    while tolk>tol:
+    count = 0
+    while (tolk > tol) and (count <= NITER):
         vectorF = np.array([[f1(vectorpx)], [f2(vectorpx)]])
         vectorDx = solveLinear(lu(matrixB), np.dot(-1, vectorF))
         vectorx = vectorpx + vectorDx
@@ -15,6 +15,7 @@ def broydenmethod(x0, B0, tol=10e-10):
         tolk = np.linalg.norm(vectorDx) / np.linalg.norm(vectorx)
         vectorpx = vectorx
         matrixB = matrixB + np.dot(vectorY - np.dot(matrixB, vectorDx), vectorDx.T) / np.dot(vectorDx.T, vectorDx)
+        count += 1
     return vectorx
 
 

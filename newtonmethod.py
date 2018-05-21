@@ -2,18 +2,18 @@ from aux import np, solveLinear
 from lu import lu
 
 
-def newtonmethod(x0, tol=10e-7):
+def newtonmethod(x0, tol=10e-7, NITER=10):
     tolk = 1
     vectorpx = x0
-
-    while tolk>tol:
+    count = 0
+    while (tolk > tol) and (count <= NITER):
         matrixJ = Jacob(vectorpx)
         vectorF = np.array([[f1(vectorpx)], [f2(vectorpx)]])
         vectorDx = solveLinear(lu(matrixJ), np.dot(-1, vectorF))
         vectorx = vectorpx + vectorDx
         tolk = np.linalg.norm(vectorDx) / np.linalg.norm(vectorx)
         vectorpx = vectorx
-
+        count += 1
     return vectorx
 
 

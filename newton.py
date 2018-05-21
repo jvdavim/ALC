@@ -1,23 +1,26 @@
 from aux import np
 
 
-def newtonOrig(x0=0, tol=10e-4):
+def newtonOrig(x0=0, tol=10e-4, NITER=10):
     tolk = 1
     px = x0
-    while (tolk > tol):
+    count = 0
+    while (tolk > tol) and (count <= NITER):
         x = px - f(px) / fl(px)
         tolk = abs(x - px)
         px = x
+        count += 1
     return x
 
 
-def newtonSec(x0=0, tol=10e-4):
+def newtonSec(x0=0, tol=10e-4, NITER=10):
     tolk = 1
     Dx = 0.001
     px = x0
     x = x0 + Dx
     fa = f(x0)
-    while tolk > tol:
+    count = 0
+    while (tolk > tol) and (count <= NITER):
         fi = f(x)
         nx = x - fi*(x - px) / (fi - fa)
         tolk = abs(nx - x)
