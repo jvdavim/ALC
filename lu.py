@@ -1,0 +1,23 @@
+from aux import np, isSquare, solveLinear
+
+
+def lu(matrixA):
+    '''Decomposicao LU da matriz matrixA. Retorna matriz LU concatenada.'''
+    # Inicia matriz LU como uma copia da matriz A
+    matrixLU = matrixA.astype(float)
+
+    # Verifica se matriz LU e quadrada
+    if not isSquare(matrixLU):
+        raise IndexError('A matriz inserida deve ser quadrada.')
+
+    # Computa os elementos da matriz LU
+    for k in range(len(matrixLU)):
+        for i in range(k + 1, len(matrixLU)):
+            matrixLU[i, k] = matrixLU[i][k] / matrixLU[k][k]
+
+        for j in range(k + 1, len(matrixLU)):
+            for i in range(k + 1, len(matrixLU)):
+                matrixLU[i, j] = matrixLU[i, j] - \
+                    (matrixLU[i, k] * matrixLU[k, j])
+
+    return matrixLU
