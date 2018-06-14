@@ -17,18 +17,19 @@ def broydenmethod(x0, B0, tol=10e-10, NITER=10):
         vectorpx = vectorx
         matrixB = matrixB + np.dot(vectorY - np.dot(matrixB, vectorDx), vectorDx.T) / np.dot(vectorDx.T, vectorDx)
         count += 1
+    print(count)
     return vectorx
 
 
 # ------------------------------------- main ------------------------------------- #
 
 # inputs
-x0 = np.array([[2], [3]])
 B0 = np.array([[1,2], [4,24]])
+x0 = np.array([[1], [1]])
 def f1(x):
-    return x[0, 0] + 2*x[1, 0] - 2
+    return x[0, 0] - x[1, 0] + 2
 def f2(x):
-    return (x[0, 0])**2 + 4*(x[1, 0])**2 - 4
+    return np.exp(x[0, 0]) + x[1, 0] - 5
 
 # metodo de newton
 x = broydenmethod(x0, B0)

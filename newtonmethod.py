@@ -2,7 +2,7 @@ from aux import np, solveLinear
 from lu import lu
 
 
-def newtonmethod(x0, tol=10e-7, NITER=10):
+def newtonmethod(x0, tol=10e-7, NITER=100):
     '''Dado um vetor inicial x0 e uma tolerancia tol, retorna o vetor solucao do sistema de equacoes nao lineares'''
     tolk = 1
     vectorpx = x0
@@ -15,20 +15,21 @@ def newtonmethod(x0, tol=10e-7, NITER=10):
         tolk = np.linalg.norm(vectorDx) / np.linalg.norm(vectorx)
         vectorpx = vectorx
         count += 1
+    print(count)
     return vectorx
 
 
 # ------------------------------------- main ------------------------------------- #
 
 # inputs
-x0 = np.array([[2], [3]])
+x0 = np.array([[1], [1]])
 def f1(x):
-    return x[0, 0] + 2*x[1, 0] - 2
+    return x[0, 0] - x[1, 0] + 2
 def f2(x):
-    return (x[0, 0])**2 + 4*(x[1, 0])**2 - 4
+    return np.exp(x[0, 0]) + x[1, 0] - 5
 
 def Jacob(x):
-    return np.array([[1, 2], [2*x[0, 0], 8*x[1, 0]]])
+    return np.array([[1, -1], [np.exp(x[0, 0]), 1]])
 
 # metodo de newton
 x = newtonmethod(x0)

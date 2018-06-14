@@ -11,6 +11,7 @@ def newtonOrig(x0=0, tol=10e-4, NITER=10):
         tolk = abs(x - px)
         px = x
         count += 1
+    print(count)
     return x
 
 
@@ -29,6 +30,8 @@ def newtonSec(x0=0, tol=10e-4, NITER=10):
         px = x
         x = nx
         fa = fi
+        count += 1
+    print(count)
     return x
 
 
@@ -36,11 +39,11 @@ def newtonSec(x0=0, tol=10e-4, NITER=10):
 
 # inputs
 def f(x):
-    return x**2 - 4*np.cos(x)
+    return np.exp(-x) - x/2
 def fl(x):
-    return 2*x + 4*np.sin(x)
+    return -np.exp(-x) - 1/2
 x0 = 10
-tol = 5*10e-4
+tol = 10e-3
 
 # newton original
 x = newtonOrig(x0, tol)
